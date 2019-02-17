@@ -41,7 +41,7 @@ class Login extends Component {
             return <NotesContainer />
         }
         return (
-            <div class="loginDiv">
+            <div className="loginDiv">
                 <div>
                     <label><b>Username : </b></label>
                     <input type="text" placeholder="Enter email" className="marginText" onChange={this.handleUsernameChange} />
