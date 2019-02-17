@@ -1,0 +1,13 @@
+.loginDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.marginText {
+    margin: 1rem;
+}
+
+.error {
+    color: red
+}

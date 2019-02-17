@@ -1,0 +1,72 @@
+.openPopUp {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  .showPopUpModal {
+    margin-right: 70px auto;
+    background: #e5e5e5;
+    border-radius: 5px;
+    position: absolute;
+    transition: all 5s ease-in-out;
+    z-index: 2;
+    width:40%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    min-height: 30rem;
+    top:18%;
+    left: 32%;
+  }
+  
+  .modal_close_button {
+    position: absolute;
+    left: 69%;
+    z-index: 2;
+    border-radius: 50%;
+    color: #fff;
+    height: 33px;
+    width: 33px;
+    cursor: pointer;
+    padding-top: 2px;
+    padding-right: 5px;
+    border: none;
+    top: 11%;
+    background: #e5e5e5;
+    color: rgba(0, 0, 0, 0.7);
+    outline: none;
+  }
+  
+  .modalHeader {
+    text-align: center;
+    align-items: center;
+    font-size: 16px;
+    color: #333333;
+    outline: none;
+    margin: 1rem 9rem;
+    height: 3rem;
+    width: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+  }
+
+  .noteText {
+    height: 18rem;
+    overflow: scroll;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .buttonRight {
+      float: right;
+  }
+
+  .buttonDiv {
+      margin-top: 1rem;
+  }

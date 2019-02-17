@@ -1,0 +1,19 @@
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 100%;
+}
+
+.notesDiv {
+    margin: 5rem;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.rightFloat {
+    float: right;
+}
