@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import NotesContainer from "./notesContainer";
 import "../styles/login.css";
 import { connect } from "react-redux";
 import { login } from "../actions/loginAction";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
     constructor(props) {
@@ -33,13 +33,12 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password
         }
-        this.props.login(user);
+        this.props.login(user).then(() =>
+            this.props.history.push("/notes")
+        )
     }
 
     render() {
-        if (this.props.validUser) {
-            return <NotesContainer />
-        }
         return (
             <div className="loginDiv">
                 <div>
@@ -66,7 +65,6 @@ class Login extends Component {
 
 function mapStateToProps(state) {
     return {
-        validUser: state.reducer.validUser,
         userError: state.reducer.userError,
         errorMessage: state.reducer.errorMessage
     }

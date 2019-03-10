@@ -6,17 +6,22 @@ import { logout } from "../actions/loginAction";
 import { toggleModal } from "../actions/editNoteAction";
 import Loader from 'react-loader-spinner'
 import "../styles/notesContainer.css";
-import EditNote from "./editNote";
+import EditNote from "../components/editNote";
 
 class NotesContainer extends Component {
     constructor(props) {
         super(props);
         this.renderNotes = this.renderNotes.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     componentWillMount() {
-        this.props.fetchNotes();
+        if (this.props.validUser) {
+            this.props.fetchNotes();
+        } else {
+            this.logout();
+        }
     }
 
     handleCreate() {
@@ -42,6 +47,11 @@ class NotesContainer extends Component {
         return notes;
     }
 
+    logout() {
+        this.props.logout();
+        this.props.history.push("/");
+    }
+
     render() {
         if (this.props.isLoading) {
             return (
@@ -60,7 +70,7 @@ class NotesContainer extends Component {
                 <button type="button" className="btn btn-primary" onClick={this.handleCreate}>
                     Add
                 </button>
-                <button type="button" className="btn btn-primary rightFloat" onClick={() => this.props.logout()}>
+                <button type="button" className="btn btn-primary rightFloat" onClick={this.logout}>
                     Logout
                 </button>
                 <div className="card-columns notesDiv">
@@ -75,7 +85,8 @@ function mapStateToProps(state) {
     return {
         notes: state.reducer.notes,
         isLoading: state.reducer.isLoading,
-        showModal: state.reducer.showModal
+        showModal: state.reducer.showModal,
+        validUser: state.reducer.validUser,
     }
 }
 

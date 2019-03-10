@@ -2,7 +2,7 @@ import service from "../service/service";
 
 export function login(user) {
     return function (dispatch) {
-        return service.login(user).then(response => {
+        return service.login(user).then(() => {
             dispatch({
                 type: "LOGIN"
             })
