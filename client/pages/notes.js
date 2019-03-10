@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
-import { fetchNotes, setSelectedNote } from "../actions/fetchNotesAction";
-import { openCreateModel } from "../actions/createNoteAction";
-import { logout } from "../actions/loginAction";
-import { toggleModal } from "../actions/editNoteAction";
+import { fetchNotes, setSelectedNote } from "../actions/fetchNotesAction.ts";
+import { openCreateModel } from "../actions/createNoteAction.ts";
+import { logout } from "../actions/loginAction.ts";
 import Loader from 'react-loader-spinner'
 import "../styles/notesContainer.css";
 import EditNote from "../components/editNote";

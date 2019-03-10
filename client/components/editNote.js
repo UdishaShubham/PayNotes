@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Modal from "react-modal";
-import { toggleEditNote, saveEditedNote, closeModal } from '../actions/editNoteAction';
+import { toggleEditNote, saveEditedNote, closeModal } from '../actions/editNoteAction.ts';
 import { connect } from "react-redux";
 import "../styles/editNote.css";
-import { deleteNote } from '../actions/deleteNoteAction';
-import { createNote } from '../actions/createNoteAction';
+import { deleteNote } from '../actions/deleteNoteAction.ts';
+import { createNote } from '../actions/createNoteAction.ts';
 
 const DISABLE_BACKGROUND = "#e5e5e5";
 const ENABLE_BACKGROUND = "#fff";

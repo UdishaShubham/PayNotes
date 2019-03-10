@@ -3,6 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
     entry: "./client/index.js",
+    devtool: "inline-source-map",
     mode: "development",
     module: {
         rules: [
@@ -16,10 +17,15 @@ module.exports = {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
 
+            },
+            {
+                test: /\.(ts|tsx)$/,
+                use: "ts-loader",
+                exclude: /node_modules/
             }
         ]
     },
-    resolve: { extensions: ["*", ".js", ".jsx"] },
+    resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
     output: {
         path: path.resolve(__dirname, "dist/"),
         publicPath: "/dist",

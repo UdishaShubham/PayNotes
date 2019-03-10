@@ -1,21 +1,21 @@
 import service from "../service/service";
 
 export function fetchNotes() {
-    return function (dispatch) {
-        return service.fetchNotes().then(response => {
+    return function (dispatch: any) {
+        return service.fetchNotes().then((response: any) => {
             dispatch({
                 type: "FETCH_NOTES",
                 notes: response.data
             })
         })
-        .catch(error => {
+        .catch((error: any) => {
             throw (error);
         })
     }
 }
 
-export function setSelectedNote(id) {
-    return function (dispatch) {
+export function setSelectedNote(id: string) {
+    return function (dispatch: any) {
         dispatch({
             type: "SET_SELECTED_NOTE",
             id

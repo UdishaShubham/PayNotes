@@ -1,17 +1,18 @@
 import service from "../service/service";
+import { NOTE } from "../intefaces";
 
 export function openCreateModel() {
-    return function (dispatch) {
+    return function (dispatch: any) {
         dispatch({
             type: "OPEN_CREATE_MODAL"
         })
     }
 }
 
-export function createNote(note) {
-    return function (dispatch) {
+export function createNote(note: NOTE) {
+    return function (dispatch: any) {
         return service.createNote(note).then(() => {
-            service.fetchNotes().then(response => {
+            service.fetchNotes().then((response : any) => {
                 dispatch({
                     type: "FETCH_NOTES",
                     notes: response.data
@@ -21,7 +22,7 @@ export function createNote(note) {
                 })
             })
         })
-            .catch(error => {
+            .catch((error: any) => {
                 throw (error);
             })
     }

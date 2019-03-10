@@ -1,3 +1,5 @@
+import { NOTES } from "../intefaces";
+
 const initialState = {
     isLoading: true,
     showModal: false,
@@ -18,7 +20,7 @@ export default (state = initialState, action) => {
         case "SET_SELECTED_NOTE":
             return {
                 ...state,
-                selectedNote: state.notes.find(note => note._id === action.id),
+                selectedNote: state.notes.find((note) => note._id === action.id),
                 showModal: true,
                 isNew: false
             }

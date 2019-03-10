@@ -1,9 +1,10 @@
 import service from "../service/service";
+import { NOTE } from "../intefaces";
 
-export function saveEditedNote(note) {
-    return function (dispatch) {
+export function saveEditedNote(note: NOTE) {
+    return function (dispatch: any) {
         return service.saveEditedNotes(note).then(() => {
-            service.fetchNotes().then(response => {
+            service.fetchNotes().then((response: any) => {
                 dispatch({
                     type: "FETCH_NOTES",
                     notes: response.data
@@ -13,14 +14,14 @@ export function saveEditedNote(note) {
                 })
             })
         })
-            .catch(error => {
+            .catch((error: any) => {
                 throw (error);
             })
     }
 }
 
-export function toggleEditNote(editNote) {
-    return function (dispatch) {
+export function toggleEditNote(editNote: boolean) {
+    return function (dispatch: any) {
         dispatch({
             type: "TOGGLE_EDIT_NOTE",
             editNote
@@ -29,7 +30,7 @@ export function toggleEditNote(editNote) {
 }
 
 export function closeModal() {
-    return function (dispatch) {
+    return function (dispatch: any) {
         dispatch({
             type: "CLOSE_MODAL"
         })
