@@ -1,14 +1,37 @@
-import React, { Component, Fragment } from 'react';
+import * as React from 'react';
 import { connect } from "react-redux";
-import { fetchNotes, setSelectedNote } from "../actions/fetchNotesAction.ts";
-import { openCreateModel } from "../actions/createNoteAction.ts";
-import { logout } from "../actions/loginAction.ts";
+import { fetchNotes, setSelectedNote } from "../actions/fetchNotesAction";
+import { openCreateModel } from "../actions/createNoteAction";
+import { logout } from "../actions/loginAction";
 import Loader from 'react-loader-spinner'
 import "../styles/notesContainer.css";
 import EditNote from "../components/editNote";
+import { FETCH_NOTE, APP_STATE } from "../intefaces";
+import { RouteComponentProps } from 'react-router-dom';
+import { ThunkDispatch } from 'redux-thunk';
 
-class NotesContainer extends Component {
-    constructor(props) {
+interface dispatchProps {
+    fetchNotes: () => void,
+    setSelectedNote: (id: string) => void,
+    openCreateModel: () => void,
+    logout: () => void
+}
+
+interface stateProps {
+    notes: FETCH_NOTE[],
+    isLoading: boolean,
+    showModal: boolean,
+    validUser: boolean,
+}
+
+interface ownProps extends RouteComponentProps {
+
+}
+
+type Props = stateProps & dispatchProps & ownProps;
+
+class NotesContainer extends React.Component <Props, {}>  {
+    constructor(props : Props) {
         super(props);
         this.renderNotes = this.renderNotes.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
@@ -28,9 +51,9 @@ class NotesContainer extends Component {
     }
 
     renderNotes() {
-        let notes = [];
+        let allNotes : any[] = [];
         this.props.notes.forEach(note => {
-            notes.push(
+            allNotes.push(
                 <div
                     className="card bg-warning clickable"
                     key={note._id}
@@ -43,7 +66,7 @@ class NotesContainer extends Component {
             )
         })
 
-        return notes;
+        return allNotes;
     }
 
     logout() {
@@ -65,7 +88,7 @@ class NotesContainer extends Component {
         }
 
         return (
-            <Fragment>
+            <React.Fragment>
                 <button type="button" className="btn btn-primary" onClick={this.handleCreate}>
                     Add
                 </button>
@@ -75,12 +98,12 @@ class NotesContainer extends Component {
                 <div className="card-columns notesDiv">
                     {this.renderNotes()}
                 </div>
-            </Fragment>
+            </React.Fragment>
         );
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state : APP_STATE) : stateProps {
     return {
         notes: state.reducer.notes,
         isLoading: state.reducer.isLoading,
@@ -89,7 +112,7 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch : ThunkDispatch <{}, {}, any> ) : dispatchProps {
     return {
         fetchNotes: () => dispatch(fetchNotes()),
         setSelectedNote: id => dispatch(setSelectedNote(id)),

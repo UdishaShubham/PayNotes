@@ -1,30 +1,40 @@
-import { NOTES } from "../intefaces";
+import { FETCH_NOTE, INITIAL_STATE } from "../intefaces";
+import * as TYPES from '../types';
 
-const initialState = {
+const selectedNote: FETCH_NOTE = {
+    _id: "",
+    name: "",
+    content: "",
+    __v: 0
+}
+
+export const initialState: INITIAL_STATE = {
     isLoading: true,
     showModal: false,
     editNote: false,
     isNew: false,
     validUser: false,
-    userError: false
+    userError: false,
+    notes: [],
+    selectedNote
 }
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: TYPES.ACTIONS) => {
     switch (action.type) {
-        case "FETCH_NOTES":
+        case TYPES.FETCH_NOTES:
             return {
                 ...state,
                 notes: action.notes,
-                isLoading: action.isLoading
+                isLoading: false
             }
-        case "SET_SELECTED_NOTE":
+        case TYPES.SET_SELECTED_NOTE:
             return {
                 ...state,
-                selectedNote: state.notes.find((note) => note._id === action.id),
+                selectedNote: state.notes.find((note: FETCH_NOTE) => note._id === action.id),
                 showModal: true,
                 isNew: false
             }
-        case "CLOSE_MODAL":
+        case TYPES.CLOSE_MODAL:
             return {
                 ...state,
                 selectedNote: {},
@@ -32,22 +42,12 @@ export default (state = initialState, action) => {
                 editNote: false,
                 isNew: false
             }
-        case "TOGGLE_EDIT_NOTE":
+        case TYPES.TOGGLE_EDIT_NOTE:
             return {
                 ...state,
                 editNote: action.editNote
             }
-        case "DELETE_NOTE":
-            return {
-                ...state,
-                result: action.payload
-            }
-        case "CREATE_NOTE":
-            return {
-                ...state,
-                result: action.payload
-            }
-        case "OPEN_CREATE_MODAL":
+        case TYPES.OPEN_CREATE_MODAL:
             return {
                 ...state,
                 selectedNote: {},
@@ -55,19 +55,19 @@ export default (state = initialState, action) => {
                 isNew: true,
                 editNote: true
             }
-        case "LOGIN":
+        case TYPES.LOGIN:
             return {
                 ...state,
                 validUser: true,
                 userError: false
             }
-        case "LOGOUT":
+        case TYPES.LOGOUT:
             return {
                 ...state,
                 validUser: false,
                 userError: false
             }
-        case "USER_NOT_FOUND":
+        case TYPES.USER_NOT_FOUND:
             return {
                 ...state,
                 validUser: false,

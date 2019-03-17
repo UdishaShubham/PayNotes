@@ -1,16 +1,17 @@
 import service from "../service/service";
-import { NOTE } from "../intefaces";
+import { SAVE_NOTE } from "../intefaces";
+import { ThunkDispatch } from 'redux-thunk';
 
 export function openCreateModel() {
-    return function (dispatch: any) {
+    return function (dispatch: ThunkDispatch<{}, {}, any>) {
         dispatch({
             type: "OPEN_CREATE_MODAL"
         })
     }
 }
 
-export function createNote(note: NOTE) {
-    return function (dispatch: any) {
+export function createNote(note: SAVE_NOTE) {
+    return function (dispatch: ThunkDispatch<{}, {}, any>) {
         return service.createNote(note).then(() => {
             service.fetchNotes().then((response : any) => {
                 dispatch({

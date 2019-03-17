@@ -1,7 +1,8 @@
+import { ThunkDispatch } from 'redux-thunk';
 import service from "../service/service";
 
 export function fetchNotes() {
-    return function (dispatch: any) {
+    return function (dispatch: ThunkDispatch<{}, {}, any>) {
         return service.fetchNotes().then((response: any) => {
             dispatch({
                 type: "FETCH_NOTES",
@@ -15,7 +16,7 @@ export function fetchNotes() {
 }
 
 export function setSelectedNote(id: string) {
-    return function (dispatch: any) {
+    return function (dispatch: ThunkDispatch<{}, {}, any>) {
         dispatch({
             type: "SET_SELECTED_NOTE",
             id

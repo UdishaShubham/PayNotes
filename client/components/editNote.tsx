@@ -1,15 +1,38 @@
-import React, { Component } from 'react';
-import { toggleEditNote, saveEditedNote, closeModal } from '../actions/editNoteAction.ts';
+import * as React from 'react';
+import { toggleEditNote, saveEditedNote, closeModal } from '../actions/editNoteAction';
 import { connect } from "react-redux";
 import "../styles/editNote.css";
-import { deleteNote } from '../actions/deleteNoteAction.ts';
-import { createNote } from '../actions/createNoteAction.ts';
+import { deleteNote } from '../actions/deleteNoteAction';
+import { createNote } from '../actions/createNoteAction';
+import { ThunkDispatch } from 'redux-thunk';
+import { SAVE_NOTE, FETCH_NOTE, APP_STATE } from "../intefaces";
 
 const DISABLE_BACKGROUND = "#e5e5e5";
 const ENABLE_BACKGROUND = "#fff";
 
-class EditNote extends Component {
-    constructor(props) {
+interface dispatchProps {
+    toggleEditNote: (editNote: boolean) => void;
+    saveEditedNote: (note: SAVE_NOTE) => void;
+    deleteNote: (id: string) => void;
+    closeModal: () => void;
+    createNote: (note: SAVE_NOTE) => void;
+}
+
+interface stateProps {
+    selectedNote: FETCH_NOTE;
+    editNote: boolean;
+    isNew: boolean;
+}
+
+interface State {
+    content: string;
+    name: string;
+} 
+
+type Props = stateProps & dispatchProps;
+
+class EditNote extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             content: this.props.selectedNote.content,
@@ -22,25 +45,25 @@ class EditNote extends Component {
         this.handleCancel = this.handleCancel.bind(this);
     }
 
-    handleContentChange(e) {
+    handleContentChange(e: any) {
         this.setState({
             content: e.target.value
         })
     }
 
-    handleNameChange(e) {
+    handleNameChange(e: any) {
         this.setState({
             name: e.target.value
         })
     }
 
     handleSave() {
-        const request = {
+        const note = {
             id: this.props.selectedNote._id,
             name: this.state.name,
             content: this.state.content
         }
-        this.props.isNew ? this.props.createNote(request) : this.props.saveEditedNote(request);
+        this.props.isNew ? this.props.createNote(note) : this.props.saveEditedNote(note);
     }
 
     handleDelete() {
@@ -93,22 +116,21 @@ class EditNote extends Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: APP_STATE): stateProps {
     return {
         selectedNote: state.reducer.selectedNote,
-        isLoading: state.reducer.isLoading,
         editNote: state.reducer.editNote,
         isNew: state.reducer.isNew
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: ThunkDispatch<{}, {}, any>): dispatchProps {
     return {
         toggleEditNote: editNote => dispatch(toggleEditNote(editNote)),
-        saveEditedNote: request => dispatch(saveEditedNote(request)),
+        saveEditedNote: note => dispatch(saveEditedNote(note)),
         deleteNote: id => dispatch(deleteNote(id)),
         closeModal: () => dispatch(closeModal()),
-        createNote: request => dispatch(createNote(request))
+        createNote: note => dispatch(createNote(note))
     }
 }
 

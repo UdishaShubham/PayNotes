@@ -1,8 +1,9 @@
 import service from "../service/service";
+import { ThunkDispatch } from 'redux-thunk';
 import { USER } from "../intefaces";
 
 export function login(user: USER) {
-    return function (dispatch: any) {
+    return function (dispatch: ThunkDispatch<{}, {}, any>) {
         return service.login(user).then(() => {
             dispatch({
                 type: "LOGIN"
@@ -18,7 +19,7 @@ export function login(user: USER) {
 }
 
 export function logout() {
-    return function (dispatch: any) {
+    return function (dispatch: ThunkDispatch<{}, {}, any>) {
         dispatch({
             type: "LOGOUT"
         })
