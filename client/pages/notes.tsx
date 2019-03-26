@@ -92,7 +92,7 @@ class NotesContainer extends React.Component <Props, {}>  {
                 <button type="button" className="btn btn-primary" onClick={this.handleCreate}>
                     Add
                 </button>
-                <button type="button" className="btn btn-primary rightFloat" onClick={this.logout}>
+                <button id="logout" type="button" className="btn btn-primary rightFloat" onClick={this.logout}>
                     Logout
                 </button>
                 <div className="card-columns notesDiv">

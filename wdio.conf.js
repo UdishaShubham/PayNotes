@@ -1,24 +1,29 @@
 exports.config = {
     runner: 'local',
     specs: [
-        './test/specs/**/*.js'
+        './client/test/features/**/*.feature'
     ],
     maxInstances: 10,
     capabilities: [{
         maxInstances: 5,
         browserName: 'chrome',
     }],
-    logLevel: 'trace',
+    logLevel: 'error',
     bail: 0,
-    baseUrl: 'http://localhost',
+    baseUrl: 'http://localhost:3000',
     waitforTimeout: 10000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,
     services: ['selenium-standalone'],
-    framework: 'mocha',
+    framework: 'cucumber',
     reporters: ['allure'],
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 60000
-    },
+    cucumberOpts: {
+        timeout: 60000,
+        compiler: ['ts:ts-node/register'],
+        require: [
+            './client/test/steps/given.ts',
+            './client/test/steps/then.ts',
+            './client/test/steps/when.ts',
+        ],
+    }
 }

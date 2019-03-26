@@ -1,16 +1,19 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "paths": { "*": ["types/*"] },
+        "paths": { 
+            "*": [ "./*" ]
+        },
         "outDir": "/dist",
         "noImplicitAny": true,
-        "module": "es6",
+        "module": "commonjs",
         "target": "es6",
         "jsx": "react",
         "allowJs": true,
         "sourceMap": true,
         "lib": ["es6", "dom"],
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "typeRoots": ["node_modules/@types", "types"]
     },
     "include": [
         "client/**/*"

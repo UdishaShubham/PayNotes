@@ -64,15 +64,15 @@ class Login extends React.Component <Props, State> {
             <div className="loginDiv">
                 <div>
                     <label><b>Username : </b></label>
-                    <input type="text" placeholder="Enter email" className="marginText" onChange={this.handleUsernameChange} />
+                    <input id="username" type="text" placeholder="Enter email" className="marginText" onChange={this.handleUsernameChange} />
                 </div>
 
                 <div>
                     <label><b>Password : </b></label>
-                    <input type="password" placeholder="Enter Password" className="marginText" onChange={this.handlePasswordChange} />
+                    <input id="password" type="password" placeholder="Enter Password" className="marginText" onChange={this.handlePasswordChange} />
                 </div>
                 <div>
-                    <button type="submit" className="btn btn-primary marginText" onClick={this.handleLogin}>Login</button>
+                    <button id="login" type="submit" className="btn btn-primary marginText" onClick={this.handleLogin}>Login</button>
                 </div>
                 {this.props.userError &&
                     <div>
