@@ -13,8 +13,8 @@ Then(
 );
 
 Then(
-    /^I expect the note to be created$/,
-    NotesPage.verifyNewNote
+    /^I expect the note to be created with header as "([^"]*)?"$/,
+    NotesPage.verifyNote
 );
 
 Then(
@@ -23,6 +23,16 @@ Then(
 );
 
 Then(
-    /^I expect create note modal to open$/,
+    /^I expect (create|edit) note modal to open$/,
     NotesPage.verifyModalOpened
+);
+
+Then(
+    /^I expect the note to be deleted$/,
+    NotesPage.verifyDeleteNote
+);
+
+Then(
+    /^I expect the edit button to appear$/,
+    NotesPage.verifyEditButton
 );

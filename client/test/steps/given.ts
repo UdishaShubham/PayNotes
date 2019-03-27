@@ -16,3 +16,13 @@ Given(
     /^I click on add new note$/,
     NotesPage.clickAdd
 );
+
+Given(
+    /^I click on note with header as "([^"]*)?" to edit$/,
+    NotesPage.openEditNote
+);
+
+Given(
+    /^I click on edit note button$/,
+    NotesPage.editNote
+)

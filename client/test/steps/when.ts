@@ -13,11 +13,16 @@ When(
 )
 
 When(
-    /^I create new note/,
+    /^I create note with header as "([^"]*)?" and text as "([^"]*)?"$/,
     NotesPage.createNote
 )
 
 When(
-    /^I (cancel|close) the create note modal/,
+    /^I (cancel|close) the create note modal$/,
     NotesPage.closeModal
+)
+
+When(
+    /^I delete the note$/,
+    NotesPage.deleteNote
 )

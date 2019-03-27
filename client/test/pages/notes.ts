@@ -1,24 +1,24 @@
 import { expect } from 'chai';
-import { getElement } from '../commonActions';
+import { getElement, elementExists } from '../commonActions';
 
 class Notes {
     clickAdd() {
         getElement('#add').click();
     }
 
-    verifyModalOpened() {
+    verifyModalOpened(action: string) {
         const modal = getElement('.showPopUpModal');
         expect(modal).to.exist;
     }
 
-    createNote() {
-        getElement('#noteHeader').setValue('Hello');
-        getElement('#noteText').setValue('Hello World');
+    createNote(header: string, text: string) {
+        getElement('#noteHeader').setValue(header);
+        getElement('#noteText').setValue(text);
         getElement('#save').click();
     }
 
-    verifyNewNote() {
-        const newNote = getElement('.card-text=Hello');
+    verifyNote(text: string) {
+        const newNote = getElement(`.card-text=${text}`);
         expect(newNote).to.exist;
     }
 
@@ -31,8 +31,39 @@ class Notes {
     }
 
     verifyModalClosed() {
+        const modalExists = elementExists('.showPopUpModal');
         const addButton = getElement('#add');
+        expect(modalExists).to.be.false;
         expect(addButton).to.exist;
+    }
+
+    openEditNote(text: string) {
+        getElement(`.card-text=${text}`).click();
+    }
+
+    verifyEditNoteOpened() {
+        const header = getElement('#noteHeader');
+        const text = getElement('#noteText');
+        expect(header.getText()).to.be.equal('Hello');
+        expect(text.getText()).to.be.equal('Hello World');
+    }
+
+    editNote() {
+        getElement('#edit').click();
+    }
+
+    deleteNote() {
+        getElement('#delete').click();
+    }
+
+    verifyDeleteNote() {
+        const noteExists = elementExists('.card-text=Hello');
+        expect(noteExists).to.be.false;
+    }
+
+    verifyEditButton() {
+        const editButton = getElement('#edit');
+        expect(editButton).to.exist;
     }
 }
 

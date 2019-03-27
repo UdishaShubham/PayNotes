@@ -21,5 +21,9 @@ Feature: Create Note
 
     Scenario: Create Note
         Given I click on add new note
-        When I create new note
-        Then I expect the note to be created
+        When I create note with header as "Hello" and text as "Hello World"
+        Then I expect the note to be created with header as "Hello"
+
+    Scenario: Logout
+        When I click on logout button
+        Then I expect to logout and the url to be "http://localhost:3000/#/"
