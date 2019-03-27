@@ -89,7 +89,7 @@ class NotesContainer extends React.Component <Props, {}>  {
 
         return (
             <React.Fragment>
-                <button type="button" className="btn btn-primary" onClick={this.handleCreate}>
+                <button id="add" type="button" className="btn btn-primary" onClick={this.handleCreate}>
                     Add
                 </button>
                 <button id="logout" type="button" className="btn btn-primary rightFloat" onClick={this.logout}>

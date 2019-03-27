@@ -1,4 +1,4 @@
-Feature: Application title test
+Feature: Login/Logout
 
     Scenario: Title is correct
         Given I open "/"

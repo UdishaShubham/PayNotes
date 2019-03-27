@@ -81,12 +81,14 @@ class EditNote extends React.Component<Props, State> {
                 <button className="modal_close_button" onClick={() => this.props.closeModal()}> X </button>
                 <div className="showPopUpModal">
                     <textarea
+                        id="noteHeader"
                         className="modalHeader"
                         value={this.state.name}
                         onChange={this.handleNameChange}
                         style={{ background: backgroundColor }}
                         disabled={!this.props.editNote} />
                     <textarea
+                        id="noteText"
                         value={this.state.content}
                         onChange={this.handleContentChange}
                         className="noteText"
@@ -103,11 +105,11 @@ class EditNote extends React.Component<Props, State> {
                         </button>
                     </div>}
                     {this.props.editNote && <div className="buttonDiv">
-                        <button type="button" className="btn btn-dark"
+                        <button id="cancel" type="button" className="btn btn-dark"
                             onClick={this.handleCancel}>
                             Cancel
                         </button>
-                        <button type="button" className="btn btn-dark buttonRight"
+                        <button id="save" type="button" className="btn btn-dark buttonRight"
                             onClick={this.handleSave}>Save</button>
                     </div>}
                 </div>
